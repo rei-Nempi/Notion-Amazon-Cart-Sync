@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "Notion Amazon Cart Sync",
+  "version": "1.0.0",
+  "description": "NotionデータベースのステータスでAmazonカートを自動管理",
+  
+  "icons": {
+    "48": "images/icon48.png"
+  },
+  
+  "permissions": [
+    "storage",
+    "tabs",
+    "activeTab",
+    "alarms",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "https://www.amazon.co.jp/*",
+    "https://api.notion.com/*"
+  ],
+  
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["https://www.amazon.co.jp/*"],
+      "js": ["scripts/content.js"],
+      "css": ["styles/content.css"]
+    }
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "images/icon48.png"
+  },
+  
+  "options_page": "options.html"
+}
